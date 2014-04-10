@@ -1,10 +1,10 @@
 -- Setup your database with something like this:
--- 
+--
 -- mysqladmin create ottwatch
--- echo " grant all on ottwatch.* to 'ottwatch'@'localhost' identified by 'CHANGEME'; " | mysql 
+-- echo " grant all on ottwatch.* to 'ottwatch'@'localhost' identified by 'CHANGEME'; " | mysql
 -- echo " flush privileges; " | mysql
 -- mysql ottwatch < schema.sql
--- 
+--
 -- Then edit config-sample.php with appropriate values, and save it as config.php
 
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
@@ -35,15 +35,16 @@ create table people (
   primary key (id)
 ) engine = innodb;
 create unique index people_in1 on people (email);
+*/
 
 drop table if exists places;
 create table places (
   id mediumint not null auto_increment,
   /* if a specific POINT, or other geometry is availalbe, add it here */
-  shape geometry, 
+  shape geometry,
   /* when the place refers to a street address, link to the "road" via roads table, save specific numeral address here */
   rd_num mediumint not null,
-  roadid int(11), 
+  roadid int(11),
   /* if place is associated with a person, link here */
   personid mediumint,
   /* if place is associated with a meeting.ITEM, link here */
@@ -100,13 +101,13 @@ create table lobbying (
 -- lobbying must be declared within 15 business days. But with weekends and worst case, that means
 -- most things under 23 are legit. So only put 24 days late and up in the report
 create or replace view latelobbying as
-  select 
+  select
 	  id,
 	  lobbydate,
 	  created,
 	  datediff(created,lobbydate) diff
-  from lobbying 
-  where 
+  from lobbying
+  where
     datediff(created,lobbydate) >= 24;
 
 -- enforce unique on the lobbying table; used by INSERTER to avoid dups
@@ -207,13 +208,13 @@ create table itemvotecast (
 ) engine = innodb;
 
 -- vote passed and count of Y/N votes
-create view itemvotetab as 
-select 
+create view itemvotetab as
+select
   itemvoteid,
   case when sum(case when vote = 'y' then 1 else 0 end) > sum(case when vote = 'n' then 1 else 0 end) then 1 else 0 end passed,
   sum(case when vote = 'y' then 1 else 0 end) y,
-  sum(case when vote = 'n' then 1 else 0 end) n 
-from itemvotecast 
+  sum(case when vote = 'n' then 1 else 0 end) n
+from itemvotecast
 group by itemvoteid;
 
 -- "ifile" means "item file" but 'file' is a keyword
@@ -394,7 +395,7 @@ create table candidate_donation (
   id mediumint not null auto_increment,
   returnid mediumint not null,
 	`type` tinyint, -- 0=individual, 1=corp_or_union
-	name varchar(100), 
+	name varchar(100),
 	address varchar(100),
 	city varchar(100),
 	prov varchar(100),
