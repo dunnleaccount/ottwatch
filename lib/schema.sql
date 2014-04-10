@@ -26,7 +26,7 @@ create table people (
   password varchar(32),
   twitter varchar(32),
   facebookid bigint unsigned,
-  /* This requires mysql 5.6 or greater since setting a non-constant timestamp on datetime isn't supported lower /*
+  /* This requires mysql 5.6 or greater since setting a non-constant timestamp on datetime isn't supported lower */
   created datetime default CURRENT_TIMESTAMP,
   lastlogin datetime,
 	emailverified boolean default false,
@@ -35,7 +35,6 @@ create table people (
   primary key (id)
 ) engine = innodb;
 create unique index people_in1 on people (email);
-*/
 
 drop table if exists places;
 create table places (
