@@ -1,5 +1,5 @@
 .DS_Store
-lib/config.php
+lib/config-sample.php
 *.mp2t
 *.swp
 /nbproject/private/

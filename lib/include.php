@@ -8,7 +8,8 @@ if (!@include_once('config.php')) {
 
 if (1) {
     # avoids global vars name collissions
-    $base = dirname(__FILE__) . '/..';
+    $base = dirname(__FILE__) . '\..';
+    # exit($base);
     set_include_path(get_include_path() . PATH_SEPARATOR . "$base/lib");
     set_include_path(get_include_path() . PATH_SEPARATOR . "$base/www");
     set_include_path(get_include_path() . PATH_SEPARATOR . "$base/www/epiphany/src");
@@ -164,11 +165,11 @@ function autoSubmitForm($url, $fields, $helptext) {
     ?>
     <div style="display: none;">
         <form id="form<?php print $id; ?>" method="post" action="<?php print $url; ?>">
-    <?php
-    foreach ($fields as $k => $v) {
-        print "<input type=\"hidden\" name=\"$k\" value=\"$v\"/>\n";
-    }
-    ?>
+            <?php
+            foreach ($fields as $k => $v) {
+                print "<input type=\"hidden\" name=\"$k\" value=\"$v\"/>\n";
+            }
+            ?>
             <input type="submit" name="zzzgo" value="foo"/>
         </form>
     </div>
