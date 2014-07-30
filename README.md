@@ -21,11 +21,25 @@ Database
 After creating a MySQL database the schema can be created via:
 
   % mysql < lib/schema.sql
+  
+  example:
+  
+  mysql> use ottwatchdb;
+  mysql> source lib/donations.sql;
 
 I've also provided SQL files for the opendata used so you don't have to worry about using "ogr2ogr" to convert from
 SHP files to Mysql GIS objects. You can load each of those as well with:
 
   % for i in lib/opendata_*sql; do echo mysql < $i; done
+  
+  example:
+  
+  for OUTPUT in $(Linux-Or-Unix-Command-Here)
+  do
+	command1 on $OUTPUT
+	command2 on $OUTPUT
+	commandN
+  done
 
 Crontab
 =======
