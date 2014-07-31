@@ -37,9 +37,7 @@ SHP files to Mysql GIS objects. You can load each of those as well with:
   
   Example of bash shell:
   
-  for OUTPUT in $(Linux-Or-Unix-Command-Here) 
-  
-  	do 
+  for OUTPUT in $(Linux-Or-Unix-Command-Here) do
   		
   		command1 on $OUTPUT
   		
